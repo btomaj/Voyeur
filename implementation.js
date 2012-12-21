@@ -6,6 +6,7 @@
  * All rights reserved.
  */
 /**
+ * TODO document libraries and their use
  * Startup process:
  * 1. If page is internal, fire 'internal' event and continue,
  * 2. If 'dev' or 'rc' mode is active, fire 'development' event and exit,
@@ -23,6 +24,8 @@
 var A = A || {};
 
 /**
+ * TODO document better
+ *
  * internal // domains that definitively identify browser as internal (e.g. intranet) useful to avoid retargeting internals
  * exclude // domains that are not supported
  * dev // development keywords in URL, e.g. 'staging', 'test', etc.
@@ -329,15 +332,18 @@ A.beacon = function beacon(insert) {
     }
 };
 
-
-// ---- everything below this line should be the last thing in this file ---- //
+/**
+ * Rewrite A.site and A.page here if neccessary
+ *
+ * Document all rewrite rules and the reasons for their existence in this
+ * commenting block.
+ */
 (function () {
     'use strict';
 
-    // rewrite site names (A.site) if neccessary...
-    // rewrite page names (A.page) if neccessary...
 }());
 
+// ---- everything below this line should be the last thing in this file ---- //
 A.run(function () { // the shot caller (what a baller)
     'use strict';
 
