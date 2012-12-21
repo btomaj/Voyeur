@@ -84,6 +84,8 @@ A.km = A.km || {};
  * Guarantees that the supplied callback is run but only run when the document
  * has loaded.
  *
+ * All functions are run in the order that they are passed to Marathon.
+ *
  * @method run
  * @for A
  *
@@ -119,16 +121,17 @@ A.run = (function () {
                 return;
             }
 
-            if (!document.body) { // ensure <body> has loaded to confirm loading is complete
+            if (!document.body) { // confirm loading is complete
                 return setTimeout(runBacklog, 1);
             }
 
             var callback = backlog,
-                i = callback.length;
+                i,
+                j;
 
             backlog = undefined;
 
-            while (i--) {
+            for (i = 0, j = callback.length; i < j; i += 1) {
                 callback[i]();
             }
 
@@ -137,7 +140,8 @@ A.run = (function () {
         DOMContentLoaded = function DOMContentLoaded() {
 
             if (document.addEventListener) {
-                document.removeEventListener('DOMContentLoaded', DOMContentLoaded, false);
+                document.removeEventListener('DOMContentLoaded',
+                    DOMContentLoaded, false);
                 runBacklog();
             } else if (document.readyState === 'complete') { // IE
                 document.detachEvent('onreadystatechange', DOMContentLoaded);
@@ -148,26 +152,27 @@ A.run = (function () {
     // End var
 
     // Initialisation proceedures
-    if (document.readyState === 'complete') { // catch cases where the browser ready event already fired
+    if (document.readyState === 'complete') { // ready event already fired
 
         runBacklog();
 
     } else if (document.addEventListener) { // standards compliant browsers
 
         document.addEventListener('DOMContentLoaded', DOMContentLoaded, false);
-        window.addEventListener('load', runBacklog, false); // window.onload will always fire, use as fallback
+        window.addEventListener('load', runBacklog, false); // fallback
 
     } else { // fallback to event model
 
-        document.attachEvent('onreadystatechange', DOMContentLoaded); // iframe-safe fallback, fires before onload
-        window.attachEvent('onload', runBacklog); // window.onload will always fire, use as second fallback
+        document.attachEvent('onreadystatechange', DOMContentLoaded);
+        window.attachEvent('onload', runBacklog); // fallback
 
         // main test for IE when not a frame
-        // using trick by Diego Perini http://javascript.nwbox.com/IEContentLoaded/
+        // trick by Diego Perini http://javascript.nwbox.com/IEContentLoaded/
         documentElement = false;
 
         try {
-            documentElement = window.frameElement === null && document.documentElement;
+            documentElement = window.frameElement === null &&
+                document.documentElement;
         } catch (e) {}
 
         if (documentElement && documentElement.doScroll) {
