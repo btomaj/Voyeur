@@ -414,7 +414,7 @@ A.run(function () { // the shot caller (what a baller)
         }
     }
     if (site === true && domain === true) {
-        if (dev === false) {
+        if (dev !== true) {
             A.observer.fire('production');
         } else {
             A.observer.fire('development');
