@@ -413,6 +413,20 @@ A.run(function () { // the shot caller (what a baller)
             break;
         }
     }
+
+    query = A.record;
+    if (query) {
+        i = query.length;
+
+        while (i--) {
+            if (typeof query[i] === 'function') {
+                query[i]();
+            }
+        }
+
+        delete A.record;
+    }
+
     if (site === true && domain === true) {
         if (dev !== true) {
             A.observer.fire('production');

@@ -18,7 +18,9 @@
  * var A = A || {};
  * A.site = A.site || '<name>'; // site/platform identifier
  * A.page = A.page || '<page>'; // page name when not using URL structure
- * A.onLoad = function onLoad() { // called when implementation file has loaded
+ *
+ * A.record = A.record || [];
+ * A.record.push(function () { // called right before production or development
  *     // ...opportunity to pass information to implementation using A.observer
  * });
  *
@@ -145,17 +147,6 @@ A.file = '<date>.js';
     mode.src = host + file;
     mode.type = 'text/javascript';
     mode.async = true;
-
-    if (mode.readyState) { // IE
-        mode.onreadystatechange = function () {
-            if (mode.readyState === 'loaded' || mode.readyState === 'complete') {
-                mode.onreadystatechange = undefined;
-                A.onLoad();
-            }
-        };
-    } else {
-        mode.onload = A.onLoad;
-    }
 
     query = document.getElementsByTagName('script')[0];
     query.parentNode.insertBefore(mode, query);
