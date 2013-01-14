@@ -1,4 +1,4 @@
-/*jslint browser: true, plusplus: true */
+/*jslint browser: true, plusplus: true, indent: 4, maxlen: 80 */
 /**
  * @preserve Voyeur
  * github.com/btomaj/voyeur
