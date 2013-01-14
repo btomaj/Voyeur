@@ -16,7 +16,7 @@
  *
  * <script type="text/javascript">
  * var A = A || {};
- * A.site = A.site || '<name>'; // site/platform/snippet identifier
+ * A.site = A.site || '<name>'; // site/platform identifier
  * A.page = A.page || '<page>'; // page name when not using URL structure
  * A.onLoad = function onLoad() { // called when implementation file has loaded
  *     // ...opportunity to pass information to implementation using A.observer
