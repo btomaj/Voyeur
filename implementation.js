@@ -244,7 +244,9 @@ A.observer = (function () {
                 registered[eventType] = [];
             }
 
-            registered[eventType].push(eventHandler);
+            if (typeof eventHandler === 'function') {
+                registered[eventType].push(eventHandler);
+            }
         },
 
         /**
