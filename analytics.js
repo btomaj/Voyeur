@@ -7,6 +7,10 @@
  * All rights reserved.
  */
 /**
+ * TODO Document that the purpose of this structure is to have centralised
+ * recording logic that isn't baked into the site and that doesn't require IT
+ * change requests for every minor change.
+ *
  * Include this file by inserting this snippet at the top of the <head />
  * element of the document:
  *
@@ -57,6 +61,7 @@
  * TODO Document stubbing console.log()
  * TODO Document defining A.file and host.
  * TODO Document asychronous nature and how to use with any platform
+ * TODO Document synchronous loading for cases like a/b testing
  *
  * @module Analytics
  * @main Analytics
