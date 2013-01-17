@@ -7,6 +7,7 @@
  */
 /**
  * TODO document libraries and their use
+ * TODO add library to extract page name from URL when A.page is undefined.
  * Startup process:
  * 1. If page is internal, fire 'internal' event and continue,
  * 2. If 'dev' or 'rc' mode is active, fire 'development' event and exit,
@@ -416,7 +417,15 @@ A.run(function () { // the shot caller (what a baller)
         }
     }
 
+    // Clear A.record backlog and redefine so push calls callbacks immediately
     query = A.record;
+    A.record = {
+        push: function push(callback) {
+            if (typeof callback === 'function') {
+                callback();
+            }
+        }
+    };
     if (query) {
         i = query.length;
 
@@ -425,8 +434,6 @@ A.run(function () { // the shot caller (what a baller)
                 query[i]();
             }
         }
-
-        delete A.record;
     }
 
     if (site === true && domain === true) {
