@@ -7,9 +7,11 @@
  * All rights reserved.
  */
 /**
- * TODO Document that the purpose of this structure is to have centralised
- * recording logic that isn't baked into the site and that doesn't require IT
- * change requests for every minor change.
+ * The purpose of this code structure is to have a centralised recording logic
+ * controlled by the technically competent analytics team. The benefits are that
+ * the business logic (and the subsequent recording logic) isn't baked into the
+ * page and doesn't require IT change requests for updates; keeping analytics
+ * agile.
  *
  * Include this file by inserting this snippet at the top of the <head />
  * element of the document:
@@ -58,12 +60,17 @@
  *
  * The selected mode is preserved across page views by setting a session cookie.
  * NB: This cookie is also used in the implementation file, if the cookie name
- * is changed the change needs to be reflected in the implemetation file.
+ * is changed the change needs to be reflected in the implementation file.
  *
- * TODO Document stubbing console.log()
- * TODO Document defining A.file and host.
- * TODO Document asychronous nature and how to use with any platform
- * TODO Document synchronous loading for cases like a/b testing
+ * This library uses console.log() for debugging purposes. To avoid throwing
+ * errors in browsers where console.log() isn't supported the function is
+ * stubbed if it doesn't exist.
+ *
+ * To start using this library, first set the name of the implementation file
+ * and its location on the internet by changing A.file and replacing
+ * '//remotehost/' with the correct URL below.
+ *
+ * GLHF!
  *
  * @module Analytics
  * @main Analytics
