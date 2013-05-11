@@ -13,6 +13,9 @@
  * page and doesn't require IT change requests for updates; keeping analytics
  * agile.
  *
+ * TODO comment on the asynchronous nature and give instructions for synchronous
+ * includes and reasons why you would choose that one.
+ *
  * Include this file by inserting this snippet at the top of the <head />
  * element of the document:
  *
@@ -67,8 +70,8 @@
  * stubbed if it doesn't exist.
  *
  * To start using this library, first set the name of the implementation file
- * and its location on the internet by changing A.file and replacing
- * '//remotehost/' with the correct URL below.
+ * by changing A.file and then set its location by replacing '//remotehost/'
+ * with the correct URL.
  *
  * GLHF!
  *
@@ -109,7 +112,8 @@ A.file = '<date>.js';
         if (query[i].indexOf('analytics=') + 1) {
             mode = query[i].replace('analytics=', '');
 
-            document.cookie = 'A-mode=' + mode + ';'; // preserve mode for subsequent pageviews; do not alter cookie name without ammending implementation.js
+            // NB: do not alter cookie name without amending implementation.js
+            document.cookie = 'A-mode=' + mode + ';';
             break;
         }
     }
