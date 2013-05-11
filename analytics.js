@@ -15,6 +15,7 @@
  *
  * TODO comment on the asynchronous nature and give instructions for synchronous
  * includes and reasons why you would choose that one.
+ * TODO Document use of A.record
  *
  * Include this file by inserting this snippet at the top of the <head />
  * element of the document:
@@ -25,9 +26,9 @@
  * A.page = A.page || '<page>'; // page name when not using URL structure
  *
  * A.record = A.record || [];
- * A.record.push(function () { // called right before production or development
- *     // ...opportunity to pass information to implementation using A.observer
- * });
+ * A.record.push(['eventName', { // called right before production or development
+ *     event: 'object'
+ * }]);
  *
  * (function () {
  *     'use strict';

@@ -422,18 +422,19 @@ A.run(function () { // the shot caller (what a baller)
     // Clear A.record backlog and redefine so push calls callbacks immediately
     query = A.record;
     A.record = {
-        push: function push(callback) {
-            if (typeof callback === 'function') {
-                callback();
+        push: function push() {
+            for (i = 0, mode = arguments.length; i < mode; i += 1) {
+                if (Object.prototype.toString.call(arguments[i]) ===
+                        '[object Array]' && arguments[i].length >= 2) {
+                    A.observer.fire(arguments[i][0], arguments[i][1]);
+                }
             }
         }
     };
-    if (query) {
-        i = query.length;
-
-        while (i--) {
-            if (typeof query[i] === 'function') {
-                query[i]();
+    if (Object.prototype.toString.call(query) === '[object Array]') {
+        for (i = 0, mode = query.length; i < mode; i += 1) {
+            if (Object.prototype.toString.call(query[i]) === '[object Array]') {
+                A.record.push(query[i]);
             }
         }
     }
