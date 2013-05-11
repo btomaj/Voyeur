@@ -25,10 +25,12 @@
 var A = A || {};
 
 /**
- * TODO document better
+ * TODO document better and explain why all the checks exist
  *
- * internal // domains that definitively identify browser as internal (e.g. intranet) useful to avoid retargeting internals
+ * internal // domains that definitively identify browser as internal (e.g. intranet)
  * exclude // domains that are not supported
+ * site // accepted values of A.site
+ * domain // recognized domains for which collecting data is desired
  * dev // development keywords in URL, e.g. 'staging', 'test', etc.
  * @property config
  * @type Object
@@ -52,7 +54,7 @@ A.sc = A.sc || {};
 A.ga = A.ga || {};
 
 /**
- * Kiss Metrics
+ * KISSMetrics
  */
 A.km = A.km || {};
 
